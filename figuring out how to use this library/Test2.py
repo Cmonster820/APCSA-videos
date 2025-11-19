@@ -29,3 +29,4 @@ class Test2(Scene):
         self.wait(2)
         self.play(sect1.animate.move_to(ORIGIN).scale(2),FadeOut(ToC))
         self.wait(2)
+        self.play(FadeOut(sect1))
