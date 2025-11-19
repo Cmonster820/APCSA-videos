@@ -22,6 +22,7 @@ class Test2(Scene):
         sect1 = copy.deepcopy(ToC.get_entries()[0])
         sect1.scale(1/2)
         ToC.scale(1/2)
+        sect1.move_to(ToC.get_entries()[0])
         self.play(Transform(title,updatedTitle))
         self.play(DrawBorderThenFill(ToC), run_time=4)
         self.add(sect1)
