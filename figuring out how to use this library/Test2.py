@@ -1,4 +1,3 @@
-#Intention: write a Title to the screen, draw a table with stuff, and then "zoom in" on the first item
 %%manim -qm Test2
 import copy
 class Test2(Scene):
@@ -21,10 +20,11 @@ class Test2(Scene):
             include_outer_lines=True,
             element_to_mobject=Text)
         sect1 = copy.deepcopy(ToC.get_entries()[0])
+        sect1.scale(1/2)
         ToC.scale(1/2)
-        self.add(sect1)
         self.play(Transform(title,updatedTitle))
         self.play(DrawBorderThenFill(ToC), run_time=4)
+        self.add(sect1)
         self.wait(2)
         self.play(sect1.animate.move_to(ORIGIN).scale(2),FadeOut(ToC))
         self.wait(2)
