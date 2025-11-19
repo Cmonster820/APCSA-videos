@@ -1,4 +1,4 @@
-%%manim -qm Test2
+manim --quality=h Test2
 import copy
 class Test2(Scene):
     def construct(self):
