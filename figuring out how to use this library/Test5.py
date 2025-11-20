@@ -23,4 +23,7 @@ class Test5(Scene):
         self.play(Write(complete),Unwrite(complete.code_lines[4]))
         self.wait(2)
         self.play(Write(extra))
+        self.wait(4)
+        self.play(Unwrite(extra))
+        self.play(FadeOut(complete))
         self.wait(2)
