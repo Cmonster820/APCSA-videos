@@ -36,12 +36,15 @@ class Test3(Scene):
     }
 }'''
         highlighted = Code(
-            code_string=example, tab_width=4, paragraph_config=dict(font="Monospace"), background = "rectangle"
+            code_string=example, tab_width=4, paragraph_config=dict(font="Monospace"), background = "rectangle", language = "java", add_line_numbers=True
         )
-        highlighted.scale(1/4)
+        highlighted.width = 13
+        highlighted.height = 7
         unhighlighted = Text(example)
-        unhighlighted.scale(1/4)
+        unhighlighted.width = 13
+        unhighlighted.height = 7
         self.play(Write(unhighlighted))
         self.wait(2)
-        self.play(Transform(unhighlighted,highlighted))
-        
+        self.play(Unwrite(unhighlighted))
+        self.play(Write(highlighted))
+        self.wait(2)
