@@ -4,7 +4,7 @@ from manim import *
 config.media_width = "75%"
 config.verbosity = "WARNING"
 print(mn.__version__)
-manim --quality=h Test2
+manim --quality=h Test3
 import copy
 class Test3(Scene):
     def construct(self):
@@ -36,11 +36,12 @@ class Test3(Scene):
     }
 }'''
         highlighted = Code(
-            code_string=example, tab_width=4,
-            language="Java", paragraph_config=dict(font="Monospace")
+            code_string=example, tab_width=4, paragraph_config=dict(font="Monospace"), background = "rectangle"
         )
+        highlighted.scale(1/4)
         unhighlighted = Text(example)
+        unhighlighted.scale(1/4)
         self.play(Write(unhighlighted))
         self.wait(2)
         self.play(Transform(unhighlighted,highlighted))
-        self.wait(2)
+        
