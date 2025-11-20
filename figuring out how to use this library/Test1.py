@@ -1,4 +1,9 @@
 #intention: write "Hello, world!" to screen, transform H to square, discard rest.
+import manim as mn
+from manim import *
+config.media_width = "75%"
+config.verbosity = "WARNING"
+print(mn.__version__)
 manim --quality=h Test1
 class Test1(Scene):
     def construct(self):
