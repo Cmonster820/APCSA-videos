@@ -30,10 +30,12 @@ class Test5(Scene):
             code_string=code_string_complete, tab_width=4, paragraph_config=dict(font="Monospace"), language = "java", add_line_numbers=True,
             formatter_style='github-dark'
         )
+        extra = complete.code_lines[4]
         complete.width = 11
         incomplete.width = 11
         #incomplete.height = complete.height
-        self.play(Write(incomplete))
+        self.play(Write(complete))
+        self.remove(extra)
         self.wait(2)
-        self.play(Write(complete),FadeOut(incomplete))
+        self.play(Write(extra))
         self.wait(2)
