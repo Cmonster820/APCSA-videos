@@ -35,6 +35,5 @@ class Test5(Scene):
         #incomplete.height = complete.height
         self.play(Write(incomplete))
         self.wait(2)
-        self.play(Write(complete))
-        self.play(FadeOut(incomplete))
+        self.play(Write(complete),FadeOut(incomplete))
         self.wait(2)
