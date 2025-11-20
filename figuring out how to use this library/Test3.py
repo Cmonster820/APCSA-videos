@@ -36,7 +36,8 @@ class Test3(Scene):
     }
 }'''
         highlighted = Code(
-            code_string=example, tab_width=4, paragraph_config=dict(font="Monospace"), background = "rectangle", language = "java", add_line_numbers=True
+            code_string=example, tab_width=4, paragraph_config=dict(font="Monospace"), background = "rectangle", language = "java", add_line_numbers=True,
+            formatter_style='github-dark'
         )
         highlighted.width = 13
         highlighted.height = 7
