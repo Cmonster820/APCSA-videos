@@ -5,6 +5,7 @@ config.media_width = "75%"
 config.verbosity = "WARNING"
 print(mn.__version__)
 manim --quality=h Test6
+%%manim -qm Test6
 class Test6(Scene):
     def construct(self):
         title = Text("The Math Class")
@@ -59,7 +60,7 @@ class Test6(Scene):
         both = VGroup(completeTablePart1,completeTablePart2)
         completeTablePart1.height = 7
         completeTablePart2.height = 7
-        curriculumTable.height = 7
+        curriculumTable.width = 10
         completeTablePart1.move_to([-4,0,0])
         completeTablePart2.move_to([3,0,0])
         completeTablePart1.to_edge(DOWN,buff=0.2)
