@@ -8,6 +8,7 @@ manim --quality=h Test6
 class Test6(Scene):
     def construct(self):
         title = Text("The Math Class")
+        title.scale(0.5)
         self.add(title.to_edge(UP))
         completeTablePart1 = MobjectTable(
             [[Text("Math.abs([int,long,float,double] x):Input type"),MathTex(r"\lvert x \rvert")],
@@ -48,9 +49,24 @@ class Test6(Scene):
              [Text("Math.copySign(double x, double y):double"),MathTex(r"\left\lvert x \right\rvert \times \mathrm{sign(}y\mathrm{)}")]
             ],include_outer_lines=True
         )
+        curriculumTable = MobjectTable(
+            [[Text("Math.abs(int x):int\nMath.abs(double x):double"),MathTex(r"\left\lvert x \right\rvert")],
+             [Text("Math.pow(double b, double e):double"),MathTex(r"\mathrm{b^e}")],
+             [Text("Math.sqrt(double x):double"),MathTex(r"\mathrm{\sqrt{x}}")],
+             [Text("Math.random():double"),Text("Random double [0,1)")]
+            ],include_outer_lines=True
+        )
+        both = VGroup(completeTablePart1,completeTablePart2)
         completeTablePart1.height = 7
         completeTablePart2.height = 7
+        curriculumTable.height = 7
         completeTablePart1.move_to([-4,0,0])
-        completeTablePart2.move_to([4,0,0])
-        self.play(Write(completeTablePart1),Write(completeTablePart2))
+        completeTablePart2.move_to([3,0,0])
+        completeTablePart1.to_edge(DOWN,buff=0.2)
+        completeTablePart2.to_edge(DOWN,buff=0.2)
+        self.play(Write(both))
+        self.wait(2)
+        self.play(Transform(both,curriculumTable))
+        self.add(curriculumTable)
+        self.remove(both)
         self.wait(2)
