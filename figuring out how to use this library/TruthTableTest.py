@@ -92,5 +92,5 @@ class TruthTableTest(Scene):
         self.wait(2)
         self.play(Write(remaining))
         self.wait(4)
-        self.play(LaggedStart(UnWrite(used)),UnWrite(remaining))
+        self.play(LaggedStart(Unwrite(used)),Unwrite(remaining))
         self.wait(2)
