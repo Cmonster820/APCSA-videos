@@ -5,7 +5,6 @@ config.media_width = "75%"
 config.verbosity = "WARNING"
 print(mn.__version__)
 manim --quality=h Test6
-%%manim -qm Test6
 class Test6(Scene):
     def construct(self):
         title = Text("The Math Class")
