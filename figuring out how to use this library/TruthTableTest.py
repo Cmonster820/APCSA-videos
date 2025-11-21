@@ -78,12 +78,12 @@ class TruthTableTest(Scene):
         xnorTable.height = 2
         xorTable.height = 2
         norTable.height = 2
-        buffTable.to_corner(UL)
+        buffTable.to_corner(UL,buff = 1)
         nandTable.next_to(buffTable,RIGHT)
-        andTable.to_corner(UR)
+        andTable.to_corner(UR,buff = 1)
         notTable.next_to(andTable,LEFT)
-        orTable.to_corner(DL)
-        xnorTable.to_corner(DR)
+        orTable.to_corner(DL,buff = 1)
+        xnorTable.to_corner(DR,buff = 1)
         norTable.next_to(orTable,RIGHT)
         xorTable.next_to(xnorTable,LEFT)
         used = VGroup(notTable,andTable,orTable,xorTable)
