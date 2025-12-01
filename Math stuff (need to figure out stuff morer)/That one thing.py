@@ -38,3 +38,8 @@ class Big10FTC(Scene):
         graphtarget.to_corner(UL)
         self.play(Transform(graphstuff,graphtarget))
         self.wait(2)
+        info = MathTex(r"g(x)=x+\int_{0}^{x}\!f(t)~dt")
+        info.to_corner(UR)
+        self.play(Write(info))
+        self.wait(2)
+        question = MathTex(r"")
