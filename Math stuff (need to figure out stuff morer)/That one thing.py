@@ -5,7 +5,7 @@ config.media_width = "75%"
 config.verbosity = "WARNING"
 print(mn.__version__)
 manim --quality=h big10FTC
-class big10FTC(Scene):
+class Big10FTC(Scene):
     def construct(self):
         banner = ManimBanner()
         self.play(banner.create())
@@ -27,6 +27,14 @@ class big10FTC(Scene):
             y_values=yvals,
             line_color=BLUE
         )
+        label = Text("f(x)")
+        label.move_to([-1,0,0])
         self.wait(1)
-        self.play(Create(graph1))
+        self.play(Create(graph1, run_time=4),Write(label))
+        self.wait(2)
+        graphstuff = VGroup(np1,graph1,label)
+        graphtarget = graphstuff.copy()
+        graphtarget.width = 7
+        graphtarget.to_corner(UL)
+        self.play(Transform(graphstuff,graphtarget))
         self.wait(2)
