@@ -302,6 +302,52 @@ class Big10FTC2(Scene):
         self.play(Unwrite(question))
         self.play(Uncreate(graphstuff))
         self.wait(2)
-%%manim -qm Big10FTC3
-class Big10FTC3(Scene):
+%%manim -qm Big10FTC2
+class Big10FTC2(Scene):
     def construct(self):
+        np = NumberPlane(
+            x_range = (-3,3,1),
+            y_range = (-3,3,1),
+            x_length = 6,
+            y_length = 6
+        )
+        firstline = Line(np.coords_to_point(-2,-2),np.coords_to_point(-1,0),color=BLUE)
+        secondline = Line(np.coords_to_point(-1,0),np.coords_to_point(2,2),color=BLUE)
+        label = MathTex(r"f(x)")
+        label.move_to(np.coords_to_point(1,2.5))
+        graph = VGroup(firstline,secondline)
+        graphstuff = VGroup(np,graph)
+        graphall = VGroup(graphstuff,label)
+        self.play(Create(np))
+        self.play(Create(graph))
+        self.play(Write(label))
+        self.wait(2)
+        graphtarget = graphall.copy()
+        graphtarget.width = 3
+        graphtarget.to_corner(UL)
+        self.play(Transform(graphall,graphtarget))
+        info = MathTex(r"Let~F(x)~be~the~antiderivative~of~f(x)")
+        info.next_to(graphall,RIGHT)
+        self.play(Write(info))
+        question = MathTex(r"Find~F(2)-F(-2)=",r"2")
+        question.next_to(graphall,DOWN)
+        question.shift([2,0,0])
+        self.play(Write(question[0]))
+        self.wait(2)
+        explanation1p1 = MathTex(r"\int_{a}^{b}\!f'(x)~dx=f(b)-f(a)")
+        explanation1p1.next_to(question,DOWN)
+        self.play(Write(explanation1p1))
+        explanation1p2 = MathTex(r"\int_{-2}^{2}\!f(x)~dx")
+        explanation1p2.move_to(explanation1p1)
+        self.play(Transform(explanation1p1,explanation1p2))
+        self.add(explanation1p2)
+        self.remove(explanation1p1)
+        self.wait(0.5)
+        tri1 = Polygon(np.coords_to_point(-2,-2),np.coords_to_point(-2,0),np.coords_to_point(-1,0),color=YELLOW,fill_opacity=0.5)
+        tri2 = Polygon(np.coords_to_point(-1,0),np.coords_to_point(2,2),np.coords_to_point(2,0),color=YELLOW,fill_opacity=0.5)
+        t1l = MathTex(r"")
+        t2l = MathTex(r"")
+        self.wait(2)
+        #self.play(Unwrite(question))
+        #self.play(Unwrite(label),Uncreate(graphstuff))
+        #self.wait(2)
