@@ -212,3 +212,27 @@ class Big10FTC1(Scene):
         self.play(Unwrite(info))
         self.play(Uncreate(graphstuff,run_time=4))
         self.wait(2)
+class Big10FTC2(Scene):
+    def construct(self):
+        np = NumberPlane(
+            x_range = (-4,6,1),
+            y_range = (-2,4,1),
+            x_length = 10,
+            y_length = 6
+        )
+        firstline = Line(np.coords_to_point(-3,3),np.coords_to_point(1,3),color=BLUE)
+        secondline = Line(np.coords_to_point(1,-1),np.coords_to_point(5,-1),colo=BLUE)
+        dot1 = Dot(point = np.coords_to_point(-3,3),color=WHITE)
+        dot2 = Dot(point = np.coords_to_point(1,3),color=WHITE,fill_opacity=0)
+        dot3 = Dot(point = np.coords_to_point(1,-1),color=WHITE)
+        dot4 = Dot(point = np.coords_to_point(5,-1),color=WHITE)
+        self.play(Create(np))
+        graph = VGroup(firstline,secondline,dot1,dot2,dot3,dot4)
+        self.play(Create(graph))
+        graphstuff = VGroup(np,graph)
+        graphtarget = graphstuff.copy()
+        graphtarget.width = 7
+        graphtarget.to_corner(UL)
+        self.wait(2)
+        self.play(Transform(graphstuff,graphtarget))
+        self.wait(2)
