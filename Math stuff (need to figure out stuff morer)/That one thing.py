@@ -60,7 +60,7 @@ class Big10FTC(Scene):
         question = MathTex(r"find~g'(-2)=",r"3")
         question.next_to(np1,DOWN)
         self.play(Write(question[0]))
-        explanation1p1 = MathTex(r"g'(x)=x+\int_{0}^{x}\!f(t)~dt")
+        explanation1p1 = MathTex(r"g(x)=x+\int_{0}^{x}\!f(t)~dt")
         explanation1p1.next_to(question,DOWN)
         explanation1p2 = MathTex(r"g'(x)=1+",r"f(x)")
         explanation1p3 = MathTex(r"g'(-2)=1+",r"f(-2)")
