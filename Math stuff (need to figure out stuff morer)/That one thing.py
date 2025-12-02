@@ -499,3 +499,19 @@ class Big10FTC4(Scene):
         self.play(Unwrite(question),Unwrite(info))
         self.play(Unwrite(label),Uncreate(graphstuff),Uncreate(areagroup))
         self.wait(2)
+%%manim -qm Big10FTC5
+class Big10FTC5(Scene):
+    def construct(self):
+        np = NumberPlane(
+            x_range = (-3,7,1),
+            y_range = (-5,5,1),
+            x_length = 6,
+            y_length = 6
+        )
+        firstline = Line(np.coords_to_point(-3,3),np.coords_to_point(1,3),color=BLUE)
+        secondline = Line(np.coords_to_point(1,-1),np.coords_to_point(5,-1),color=BLUE)
+        dot1 = Dot(point = np.coords_to_point(-3,3),color=WHITE)
+        dot2 = Circle(color=WHITE, radius=0.08, fill_opacity=0)
+        dot2.move_to(np.coords_to_point(1,3))
+        dot3 = Dot(point = np.coords_to_point(1,-1),color=WHITE)
+        dot4 = Dot(point = np.coords_to_point(5,-1),color=WHITE)
