@@ -302,3 +302,6 @@ class Big10FTC2(Scene):
         self.play(Unwrite(question))
         self.play(Uncreate(graphstuff))
         self.wait(2)
+%%manim -qm Big10FTC3
+class Big10FTC3(Scene):
+    def construct(self):
