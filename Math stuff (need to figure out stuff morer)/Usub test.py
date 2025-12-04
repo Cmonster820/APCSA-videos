@@ -87,6 +87,6 @@ class uSubTest(Scene):
         self.wait(2)
         self.play(Unwrite(questionfull))
         self.wait(2)
-        questionfull = MathTex(r"\int_{\frac{\pi}{6}}^{\frac{\pi}{6}}\!2\sin(2\theta)~d\theta=", r"\frac{3}{2}")
+        questionfull = MathTex(r"\int_{\frac{\pi}{6}}^{\frac{\pi}{2}}\!2\sin(2\theta)~d\theta=", r"\frac{3}{2}")
         self.play(Write(questionfull))
         self.wait(2)
