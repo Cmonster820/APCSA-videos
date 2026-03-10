@@ -23,8 +23,13 @@ class ACTThing(Scene):
         self.play(Create(box2), Create(box1), Write(exp1), Write(exp2), Create(arr1), Create(arr2))
         self.wait(2)
         expGroup = VGroup(exp1,exp2)
-        explanation = 
-        self.play(Uncreate(arr1), Uncreate(arr2), Unwrite(exp1), Unwrite(exp2))
+        explanation = Tex(r"Must maintain pattern")
+        explanation.move_to(expGroup)
+        self.play(Transform(expGroup,explanation))
+        self.add(explanation)
+        self.remove(expGroup)
+        self.wait(2)
+        self.play(Uncreate(arr1), Uncreate(arr2), Unwrite(explanation))
         self.play(Uncreate(box1), Uncreate(box2))
         self.wait(2)
         lines = []
