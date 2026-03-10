@@ -2,6 +2,11 @@
 
 class ACTThing(Scene):
     def construct(self):
+        banner = ManimBanner()
+        self.play(banner.create())
+        self.play(banner.expand())
+        self.wait(0.5)
+        self.play(Unwrite(banner))
         question = Tex(r"Adele {{has}} become popular for her unique voice, and \newline she {{\underline{had published}}} four studio albums.",
                       tex_environment="flushleft")
         question.to_corner(UL)
