@@ -25,11 +25,11 @@ class ACTThing(Scene):
         expGroup = VGroup(exp1,exp2)
         explanation = Tex(r"Must maintain pattern")
         explanation.move_to(expGroup)
-        self.play(Transform(expGroup,explanation))
+        self.play(Uncreate(arr1), Uncreate(arr2),Transform(expGroup,explanation))
         self.add(explanation)
         self.remove(expGroup)
         self.wait(2)
-        self.play(Uncreate(arr1), Uncreate(arr2), Unwrite(explanation))
+        self.play(Unwrite(explanation))
         self.play(Uncreate(box1), Uncreate(box2))
         self.wait(2)
         lines = []
