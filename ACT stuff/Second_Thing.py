@@ -6,7 +6,7 @@
 #sume that, since Manim requires ffmpeg (I think).
 #I did write all of this, though. I just used the quick start guide Jupyter notebook to generate
 #the animation for the slides.
-%%manim -qm ACTThing2
+%%manim -qh ACTThing2
 
 class ACTThing2(Scene):
     def construct(self):
