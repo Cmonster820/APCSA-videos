@@ -15,67 +15,41 @@ class ACTThing3(Scene):
         self.play(banner.expand())
         self.wait(0.5)
         self.play(Unwrite(banner))
-        question = Tex(r"Sitting in the comfort of {{our}} living room, {{\underline{Bad Bunny’s halftime performance that we were watching}}} \newline was interesting and exciting.",
+        question = Tex(r"At the music store, the {{\underline{professional crafted}}} violins were \newline much more expensive than the beginner violins.",
                       tex_environment="flushleft")
         question.to_corner(UL)
-        answers = Tex(r"\indent a) Bad Bunny’s halftime performance watched \newline",
-                      r"\indent b) there was Bad Bunny’s halftime performance that we \newline \indent \medskip watched \newline",
-                      r"\indent c) watching Bad Bunny’s halftime performance that \newline",
-                      r"\indent d) we watched Bad Bunny’s halftime performance that",
+        answers = Tex(r"\indent a) NO CHANGE \newline",
+                      r"\indent b) profession crafted \newline",
+                      r"\indent c) professionally crafted \newline",
+                      r"\indent d) professional craft",
                       tex_environment="flushleft")
-        answers.next_to(question,[0,-2,0])
-        answers.to_edge(LEFT,buff=0.75)
+        answers.next_to(question, DOWN, aligned_edge = LEFT)
         group = VGroup(question,answers)
         self.play(Write(group))
         self.wait(2)
-        new_q = question.copy()
-        new_q.font_size = question.font_size/2
-        new_q.to_corner(UL)
-        new_a = Tex(r"\indent a) Bad Bunny’s halftime performance watched \newline",
-                      r"\indent b) there was Bad Bunny’s halftime performance that we watched \newline",
-                      r"\indent c) watching Bad Bunny’s halftime performance that \newline",
-                      r"\indent d) we watched Bad Bunny’s halftime performance that",
-                      tex_environment="flushleft")
-        new_a.font_size = new_q.font_size
-        new_a.next_to(new_q, DOWN, aligned_edge = LEFT)
-        new_group = VGroup(new_q,new_a)
-        self.play(Transform(group,new_group))
-        box1 = SurroundingRectangle(question[3])
-        box2 = SurroundingRectangle(question[1])
-        exp2 = Tex(r'"our" states that we are the subject',tex_environment="flushleft")
-        exp1 = Tex(r'''Structure implies that the performance is the subject, but it's "we."''',tex_environment="flushleft")
-        exp1.font_size = exp1.font_size*0.75
-        exp2.font_size = exp1.font_size
-        exp2.to_corner(DR)
-        exp2.to_edge(RIGHT, buff = 3)
-        exp1.next_to(exp2,UP, aligned_edge = LEFT)
+        box1 = SurroundingRectangle(question[1])
+        exp1 = Tex(r'''"professional" is, in this case, an adjective; \newline in order to modify "crafted," we need an adverb''',tex_environment="flushleft")
+        exp1.to_corner(DR)
         arr1 = Arrow(start = box1, end = exp1, color = BLUE)
-        arr2 = Arrow(start = box2, end = exp2, color = BLUE)
-        self.play(Create(box2), Create(box1), Write(exp1), Write(exp2), Create(arr1), Create(arr2))
+        self.play(Create(box1), Write(exp1), Create(arr1))
         self.wait(2)
-        expGroup = VGroup(exp1,exp2)
-        expGroup.font_size = exp1.font_size
-        explanation = Tex(r"Subject must be first word after comma.")
-        explanation.to_corner(DR)
-        self.play(Uncreate(arr1), Uncreate(arr2),Transform(expGroup,explanation))
-        self.add(explanation)
-        self.remove(expGroup)
+        self.play(Uncreate(arr1))
         self.wait(2)
-        self.play(Uncreate(box1), Uncreate(box2))
-        self.wait(2)
+        self.play(Uncreate(box1))
+        self.wait()
         lines = []
         for line in answers:
             lines.append(Line(
             start=line.get_left(),
             end=line.get_right(),
             color=RED))
-        del lines[3]
+        del lines[2]
         for line in lines:
             self.play(Create(line),run_time=0.5)
-        box = SurroundingRectangle(answers[3])
+        box = SurroundingRectangle(answers[2])
         self.play(Create(box))
         self.wait(2)
         for line in lines:
             self.play(Uncreate(line),run_time = 0.25)
-        self.play(Uncreate(box), Unwrite(group), Unwrite(explanation))
+        self.play(Uncreate(box), Unwrite(group), Unwrite(exp1))
         self.wait(2)
