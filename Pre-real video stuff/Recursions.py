@@ -56,7 +56,7 @@ class Recursions(Scene):
             self.play(Create(box),run_time=0.5)
             self.play(Write(table),run_time=0.5)
             self.play(Uncreate(box),run_time=0.5)
-        for i in range(5,-1,-1):
+        for i in range(4,0,-1):
             newTable = Table([[str(answers[i])]], include_outer_lines=True)
             self.play(Transform(squares[i],newTable))
             self.add(newTable)
@@ -66,6 +66,11 @@ class Recursions(Scene):
             self.add(thing)
             self.play(Unwrite(newTable),thing.animate.move_to(code_second))
             self.play(Unwrite(thing))
-        self.wait(2)
-        self.play(Unwrite(code_second),Unwrite(code_third),Unwrite(Title))
+        answer = MathTex(answers[0])
+        self.play(Transform(squares[0],answer))
+        self.add(answer)
+        self.remove(squares[0])
+        self.play(answer.animate.move_to(code_third))
+        self.play(Unwrite(answer))
+        self.play(Unwrite(code_third),Unwrite(code_second),Unwrite(title))
         self.wait(2)
