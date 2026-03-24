@@ -1,4 +1,4 @@
-%%manim -qm Recursions
+%%manim -qh Recursions
 class Recursions(Scene):
     def construct(self):
         banner = ManimBanner()
@@ -72,5 +72,5 @@ class Recursions(Scene):
         self.remove(squares[0])
         self.play(answer.animate.move_to(code_third))
         self.play(Unwrite(answer))
-        self.play(Unwrite(code_third),Unwrite(code_second),Unwrite(title))
+        self.play(FadeOut(code_third),FadeOut(code_second),Unwrite(title))
         self.wait(2)
