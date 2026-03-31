@@ -1,4 +1,4 @@
-%%manim -qh MergeSort
+%%manim -qm MergeSort
 class MergeSort(Scene):
     def construct(self):
         banner = ManimBanner()
