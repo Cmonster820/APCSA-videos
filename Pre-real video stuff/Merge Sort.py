@@ -20,7 +20,7 @@ class MergeSort(Scene):
             square = Square(item.height*1.5)
             group = VGroup(item,square)
             table.append(group)
-        table[0].move_to([-len(table)//2*table[0].width,0,0])
+        table[0].move_to([(-len(table)//2*table[0].width)-table[0].width/2,0,0])
         for i in range(1,len(table)):
             table[i].next_to(table[i-1],buff=0)
         for item in table:
@@ -46,3 +46,12 @@ class MergeSort(Scene):
         self.wait(2)
         boxes = [SurroundingRectangle(item, buff=0.1) for item in [subgroup3,subgroup4,subgroup5,subgroup6]]
         self.play(*[Create(item) for item in boxes])
+        self.play(*[Uncreate(item) for item in boxes])
+        temp = table[-2].get_center()
+        self.play(table[-2].animate.move_to(table[-1]),table[-1].animate.move_to(temp))
+        self.wait(1)
+        self.play(table[0].animate.shift([1,0,0]),table[1].animate.shift([0.5,0,0]),table[2].animate.shift([0.5,0,0]),table[-3].animate.shift([-0.5,0,0]),table[-1].animate.shift([-0.5,0,0]),table[-2].animate.shift([-1,0,0]))
+        boxes = [SurroundingRectangle(item,buff=0.1) for item in [subgroup1,subgroup2]]
+        self.play(*[Create(box) for box in boxes])
+        self.play(*[Uncreate(box) for box in boxes])
+        
