@@ -1,4 +1,4 @@
-%%manim -qm MergeSort
+%%manim -qh MergeSort
 import random
 class MergeSort(Scene):
     def construct(self):
@@ -17,10 +17,10 @@ class MergeSort(Scene):
         table = []
         for num in numtable:
             item = Tex(num)
-            square = Square(item.height*1.5)
+            square = Square(Tex(numtable[0]).height*1.5)
             group = VGroup(item,square)
             table.append(group)
-        table[0].move_to([(-len(table)//2*table[0].width)-table[0].width/2,0,0])
+        table[0].move_to([(-len(table)//2*table[0].width)+table[0].width/2,0,0])
         for i in range(1,len(table)):
             table[i].next_to(table[i-1],buff=0)
         for item in table:
@@ -47,11 +47,44 @@ class MergeSort(Scene):
         boxes = [SurroundingRectangle(item, buff=0.1) for item in [subgroup3,subgroup4,subgroup5,subgroup6]]
         self.play(*[Create(item) for item in boxes])
         self.play(*[Uncreate(item) for item in boxes])
+        self.play(table[0].animate.shift([1,0,0]),table[1].animate.shift([0.5,0,0]),table[2].animate.shift([0.5,0,0]),table[-3].animate.shift([-0.5,0,0]),table[-2].animate.shift([-0.5,0,0]),table[-1].animate.shift([-1,0,0]))
         temp = table[-2].get_center()
         self.play(table[-2].animate.move_to(table[-1]),table[-1].animate.move_to(temp))
         self.wait(1)
-        self.play(table[0].animate.shift([1,0,0]),table[1].animate.shift([0.5,0,0]),table[2].animate.shift([0.5,0,0]),table[-3].animate.shift([-0.5,0,0]),table[-1].animate.shift([-0.5,0,0]),table[-2].animate.shift([-1,0,0]))
         boxes = [SurroundingRectangle(item,buff=0.1) for item in [subgroup1,subgroup2]]
         self.play(*[Create(box) for box in boxes])
         self.play(*[Uncreate(box) for box in boxes])
-        
+        self.play(subgroup3.animate.shift([0.5,0,0]),subgroup6.animate.shift([-0.5,0,0]))
+        temp = table[-1].get_center()
+        temp1 = table[2].get_center()
+        temp2 = table[-3].get_center()
+        self.play(table[2].animate.move_to(table[1]),table[1].animate.move_to(temp1),table[-1].animate.move_to(table[-4]),table[-3].animate.move_to(temp),table[-4].animate.move_to(temp2))
+        self.wait(1)
+        box = SurroundingRectangle(VGroup(*table), buff=0.1)
+        self.play(Create(box))
+        self.play(Uncreate(box))
+        self.play(subgroup1.animate.shift([0.5,0,0]),subgroup2.animate.shift([-0.5,0,0]))
+        #1->3, 2->4, 3->5, 4->8, 5->1, 8->7, 6->2, 7->6
+        temp3 = table[0].get_center()
+        temp4 = table[2].get_center()
+        temp5 = table[1].get_center()
+        temp8 = table[3].get_center()
+        temp1 = table[7].get_center()
+        temp7 = table[6].get_center()
+        temp2 = table[4].get_center()
+        temp6 = table[5].get_center()
+        self.play(
+            table[0].animate.move_to(temp5),
+            table[1].animate.move_to(temp1),
+            table[2].animate.move_to(temp8),
+            table[3].animate.move_to(temp7),
+            table[4].animate.move_to(temp4),
+            table[5].animate.move_to(temp2),
+            table[6].animate.move_to(temp6),
+            table[7].animate.move_to(temp3))
+        newtable = [table[7],table[4],table[0],table[2],table[1],table[5],table[6],table[3]]
+        self.play(LaggedStart(*[item.animate.set_color(GREEN) for item in newtable],lag_ratio = 0.25))
+        self.wait(2)
+        self.play(Unwrite(title))
+        self.play(*[Unwrite(item) for item in table])
+        self.wait(2)
