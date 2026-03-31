@@ -26,4 +26,10 @@ class MergeSort(Scene):
             table[i].next_to(table[i-1],buff=0)
         for item in table:
             self.play(Write(item),run_time=0.5)
-        
+        divider = Line(start = table[len(table)//2].get_corner(UR), end = table[len(table)//2].get_corner(DR), color = RED)
+        self.play(Create(divider))
+        subgroup1 = VGroup(*[item for item in table[0:len(table)//2]])
+        subgroup2 = VGroup(*[item for item in table[len(table)//2:]])
+        self.play(subgroup1.animate.shift([-0.5,0,0]),subgroup2.animate.shift([0.5,0,0]),Uncreate(divider))
+        divider1 = Line(start = table[len(table)//4].get_corner(UR), end = table[len(table)//4].get_corner(DR), color = RED)
+        divider2 = Line(start = table[len(table)*3//4].get_corner(UL), end = table[len(table)*3//4].get_corner(DL), color = RED)
