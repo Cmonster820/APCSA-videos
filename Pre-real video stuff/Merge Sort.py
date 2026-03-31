@@ -33,3 +33,4 @@ class MergeSort(Scene):
         self.play(subgroup1.animate.shift([-0.5,0,0]),subgroup2.animate.shift([0.5,0,0]),Uncreate(divider))
         divider1 = Line(start = table[len(table)//4].get_corner(UR), end = table[len(table)//4].get_corner(DR), color = RED)
         divider2 = Line(start = table[len(table)*3//4].get_corner(UL), end = table[len(table)*3//4].get_corner(DL), color = RED)
+        self.play(Create(divider1),Create(divider2))
